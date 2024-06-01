@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const Navbar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => { })
+      .catch(error => console.log(error));
+  }
 
   const navLinks = (
     <>
@@ -48,16 +56,34 @@ const Navbar = () => {
 
   const authLinks = (
     <>
-      <NavLink
-        to="/login"
-        className={({ isActive }) =>
-          isActive
-            ? "self-center px-8 py-3 rounded bg-violet-600 text-gray-50 hover:bg-violet-950"
-            : "self-center px-8 py-3 rounded hover:bg-gray-200"
-        }
-      >
-        Log in
-      </NavLink>
+      {
+        user ?
+          <>
+            <NavLink
+               onClick={handleLogOut}
+              className={({ isActive }) =>
+                isActive
+                  ? "self-center px-8 py-3 rounded bg-violet-600 text-gray-50 hover:bg-violet-950"
+                  : "self-center px-8 py-3 rounded hover:bg-gray-200"
+              }
+            >
+              Log Out
+            </NavLink>
+          </> :
+          <>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? "self-center px-8 py-3 rounded bg-violet-600 text-gray-50 hover:bg-violet-950"
+                  : "self-center px-8 py-3 rounded hover:bg-gray-200"
+              }
+            >
+              Log in
+            </NavLink>
+          </>
+      }
+
       <NavLink
         to="/register"
         className={({ isActive }) =>
@@ -81,7 +107,7 @@ const Navbar = () => {
           <ul className="items-stretch hidden space-x-3 lg:flex">
             {navLinks}
           </ul>
-          
+
           <div className="items-center flex-shrink-0 hidden lg:flex space-x-3">
             {authLinks}
           </div>

@@ -1,12 +1,23 @@
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Register = () => {
 
-
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
+    const onSubmit = (data) => {
+        console.log(data)
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                
+            })
+    };
 
     return (
         <div>
@@ -21,7 +32,7 @@ const Register = () => {
                     </div>
                     {/* <form onSubmit={handleSubmit(onSubmit)} */}
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form className="card-body">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -52,6 +63,9 @@ const Register = () => {
                                     minLength: 6,
                                     maxLength: 20,
                                 })} placeholder="password" className="input input-bordered" required />
+                                {errors.password?.type === 'required' && <p className="text-red-500">Password is required</p>}
+                                {errors.password?.type === 'minLength' && <p className="text-red-500 text-center">Password must be 6 characters</p>}
+                                {errors.password?.type === 'maxLength' && <p className="text-red-500 text-center">Password must be less then 20 characters</p>}
                             </div>
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Register" />

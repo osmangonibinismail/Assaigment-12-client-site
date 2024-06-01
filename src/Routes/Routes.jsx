@@ -8,6 +8,7 @@ import Register from "../pages/Register/Register";
 import AllScholarship from "../pages/AllSchoolarship/AllScholarship";
 import ErrorPage from "../LayOut/ErrorPage";
 import DashBoard from "../pages/DashBoard/DashBoard";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <DashBoard></DashBoard>
+                element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>
             },
             {
                 path: '/login',
