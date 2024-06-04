@@ -3,6 +3,7 @@ import { Typewriter } from "react-simple-typewriter"
 
 
 const TopScholarship = () => {
+    // const {scholarshipName, universityName} = allScholarship; {allScholarship}
     return (
         <div>
             <div className="text-5xl p-10 text-stone-700 text-center font-bold">

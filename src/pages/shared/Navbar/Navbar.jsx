@@ -41,7 +41,19 @@ const Navbar = () => {
       </li>
       <li className="flex">
         <NavLink
-          to="/dashboard"
+          to="/secret"
+          className={({ isActive }) =>
+            isActive
+              ? "px-4 py-2 text-violet-600 border-b-2 border-violet-600"
+              : "px-4 py-2 hover:bg-gray-200 rounded"
+          }
+        >
+          secret
+        </NavLink>
+      </li>
+      <li className="flex">
+        <NavLink
+          to="/dashboard/myApplication"
           className={({ isActive }) =>
             isActive
               ? "px-4 py-2 text-violet-600 border-b-2 border-violet-600"

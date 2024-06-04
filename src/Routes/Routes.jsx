@@ -7,8 +7,11 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AllScholarship from "../pages/AllSchoolarship/AllScholarship";
 import ErrorPage from "../LayOut/ErrorPage";
-import DashBoard from "../pages/DashBoard/DashBoard";
 import PrivateRoute from "./PrivateRoute";
+import ScholarshipCartDetails from "../pages/AllSchoolarship/ScholarshipCartDetails";
+import Dashboard from "../LayOut/Dashboard";
+import Secret from "../pages/Secret/Secret";
+import MyApplication from "../pages/DashBoard/MyApplication/MyApplication";
 
 export const router = createBrowserRouter([
     {
@@ -25,8 +28,8 @@ export const router = createBrowserRouter([
                 element: <AllScholarship></AllScholarship>
             },
             {
-                path: '/dashboard',
-                element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>
+                path: '/secret',
+                element: <PrivateRoute><Secret></Secret></PrivateRoute>
             },
             {
                 path: '/login',
@@ -35,7 +38,21 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/scholarshipCartDetails',
+                element: <ScholarshipCartDetails></ScholarshipCartDetails>
             }
         ]
     },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+            {
+                path: 'myApplication',
+                element: <MyApplication></MyApplication>
+            }
+        ]
+    }
 ]);

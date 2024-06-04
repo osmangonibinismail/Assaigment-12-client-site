@@ -4,6 +4,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const Banner = () => {
   return (
     <Carousel className="">
+            {/* <div>
+                <img src='https://i.ibb.co/rsJggB7/management.jpg' />
+            </div> */}
             <div>
                 <img src='https://i.ibb.co/CM2R8dk/1.png' />
             </div>
