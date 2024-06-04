@@ -78,7 +78,7 @@ const Dashboard = () => {
                                 <FaSearch className="text-xl" />All Scholarship</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/allScholarship">
+                            <NavLink to="/contactUs">
                                 <MdEmail className="text-xl" />Contact Us</NavLink>
                         </li>
                     </ul>

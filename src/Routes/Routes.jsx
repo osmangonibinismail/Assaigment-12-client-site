@@ -17,6 +17,7 @@ import AddItem from "../pages/DashBoard/AddItem/AddItem";
 import AdminRoutes from "./AdminRoutes";
 import ManageScholarship from "../pages/DashBoard/ManageScholarship/ManageScholarship";
 import UpdateScholarship from "../pages/DashBoard/UpdateScholarship/UpdateScholarship";
+import ContactUs from "../pages/Home/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/contactUs',
+                element: <ContactUs></ContactUs>
             },
             {
                 path: '/allScholarship',
