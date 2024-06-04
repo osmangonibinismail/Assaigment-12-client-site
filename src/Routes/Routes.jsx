@@ -12,6 +12,7 @@ import ScholarshipCartDetails from "../pages/AllSchoolarship/ScholarshipCartDeta
 import Dashboard from "../LayOut/Dashboard";
 import Secret from "../pages/Secret/Secret";
 import MyApplication from "../pages/DashBoard/MyApplication/MyApplication";
+import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +53,12 @@ export const router = createBrowserRouter([
             {
                 path: 'myApplication',
                 element: <MyApplication></MyApplication>
+            },
+
+            // admin route
+            {
+                path: 'allUsers',
+                element: <AllUsers></AllUsers>
             }
         ]
     }

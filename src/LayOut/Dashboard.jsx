@@ -1,16 +1,18 @@
 import { Helmet } from "react-helmet-async"
-import { FaHome, FaListAlt, FaSearch, FaUsers, FaVoicemail } from "react-icons/fa"
-import { MdEmail, MdManageHistory, MdOutlineCastForEducation, MdOutlineManageSearch, MdRateReview } from "react-icons/md"
+import { FaHome, FaListAlt, FaSearch, FaUsers } from "react-icons/fa"
+import { MdEmail, MdOutlineManageSearch, MdRateReview } from "react-icons/md"
 import { NavLink, Outlet } from "react-router-dom"
 import useCart from "../Hooks/useCart"
 import { IoIosAddCircle } from "react-icons/io"
 import { CgProfile } from "react-icons/cg"
+import { SiManageiq } from "react-icons/si"
+import useAdmin from "../Hooks/useAdmin"
 
 
 const Dashboard = () => {
     const [cart] = useCart();
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <>
@@ -25,39 +27,39 @@ const Dashboard = () => {
                             isAdmin ?
                                 <>
                                     <li>
-                                        <NavLink to="/dashboard/myProfile">
-                                        <CgProfile className="text-xl"/> My Profile</NavLink>
+                                        <NavLink to="/dashboard/adminProfile">
+                                            <CgProfile className="text-xl" /> Admin Profile</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/myProfile">
-                                        <IoIosAddCircle className="text-xl" />Add Scholarship</NavLink>
+                                        <NavLink to="/dashboard/addScholarship">
+                                            <IoIosAddCircle className="text-xl" />Add Scholarship</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/myProfile">
-                                        <MdManageHistory className="text-xl"/>Manage Scholarship.</NavLink>
+                                        <NavLink to="/dashboard/manageScholarship">
+                                            <SiManageiq className="text-xl" />Manage Scholarship.</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/myApplication">
-                                        <MdOutlineManageSearch className="text-xl" />Manage Applied Application ({cart.length})</NavLink>
+                                        <NavLink to="/dashboard/manageAppliedApplication">
+                                            <MdOutlineManageSearch className="text-2xl" />Manage Applied Application ({cart.length})</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/allUsers">
+                                            <FaUsers className="text-xl" />Manage Users</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/review">
-                                        <FaUsers className="text-xl" />Manage Users</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/dashboard/review">
-                                            <MdRateReview  className="text-xl"/>Manage Review</NavLink>
+                                            <MdRateReview className="text-xl" />Manage Review</NavLink>
                                     </li>
                                 </>
                                 :
                                 <>
                                     <li>
                                         <NavLink to="/dashboard/myProfile">
-                                        <CgProfile className="text-xl"/> My Profile</NavLink>
+                                            <CgProfile className="text-xl" /> My Profile</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/myApplication">
-                                            <FaListAlt  className="text-xl"/> My Application ({cart.length})</NavLink>
+                                            <FaListAlt className="text-xl" /> My Application ({cart.length})</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/review">
@@ -73,7 +75,7 @@ const Dashboard = () => {
                         </li>
                         <li>
                             <NavLink to="/allScholarship">
-                                <FaSearch className="text-xl"/>All Scholarship</NavLink>
+                                <FaSearch className="text-xl" />All Scholarship</NavLink>
                         </li>
                         <li>
                             <NavLink to="/allScholarship">
