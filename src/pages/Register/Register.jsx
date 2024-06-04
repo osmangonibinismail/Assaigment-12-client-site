@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 const Register = () => {
-
+    
     const axiosPublic = useAxiosPublic();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();

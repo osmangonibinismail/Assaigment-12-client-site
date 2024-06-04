@@ -62,8 +62,8 @@ const AllUsers = () => {
     }
 
     return (
-        <div>
-            <div className="flex justify-evenly">
+        <div className="">
+            <div className="flex justify-evenly ">
                 <h2 className="text-2xl text-cyan-600">Total Users: {users.length}</h2>
             </div>
             <div className="mt-6">
