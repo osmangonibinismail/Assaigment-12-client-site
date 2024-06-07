@@ -18,6 +18,8 @@ import AdminRoutes from "./AdminRoutes";
 import ManageScholarship from "../pages/DashBoard/ManageScholarship/ManageScholarship";
 import UpdateScholarship from "../pages/DashBoard/UpdateScholarship/UpdateScholarship";
 import ContactUs from "../pages/Home/ContactUs/ContactUs";
+import UserProfile from "../pages/DashBoard/UserProfile/UserProfile";
+import AdminProfile from "../pages/DashBoard/AdminProfile/AdminProfile";
 
 export const router = createBrowserRouter([
     {
@@ -50,8 +52,9 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/scholarshipCartDetails',
-                element: <ScholarshipCartDetails></ScholarshipCartDetails>
+                path: '/scholarshipCartDetails/:id',
+                element: <ScholarshipCartDetails></ScholarshipCartDetails>,
+                loader: ({params}) => fetch(`http://localhost:5001/allScholarship/${params.id}`)
             }
         ]
     },
@@ -61,11 +64,19 @@ export const router = createBrowserRouter([
         children: [
             // normal user routes
             {
+                path: 'userHome',
+                element: <UserProfile></UserProfile>
+              },
+            {
                 path: 'myApplication',
                 element: <MyApplication></MyApplication>
             },
 
             // admin route
+            {
+                path: 'adminProfile',
+                element: <AdminRoutes><AdminProfile></AdminProfile></AdminRoutes>
+            },
             {
                 path: 'addScholarship',
                 element: <AdminRoutes><AddItem></AddItem></AdminRoutes>

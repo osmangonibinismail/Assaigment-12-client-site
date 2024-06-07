@@ -3,12 +3,14 @@ import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const AddItem = () => {
     const { register, handleSubmit, reset  } = useForm();
     const axiosPublic = useAxiosPublic();
+    const {user} = useAuth();
     const axiosSecure = useAxiosSecure();
     const onSubmit = async (data) => {
         console.log(data)
@@ -22,6 +24,7 @@ const AddItem = () => {
         if (res.data.success) {
             // now send the menu item data to the server with the image
             const menuItem = {
+                userEmail: data.userEmail,
                 scholarshipName: data.scholarshipName,
                 universityName: data.universityName,
                 universityCountry: data.universityCountry,
@@ -242,7 +245,20 @@ const AddItem = () => {
                         </div>
                     </div>
 
-                    <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
+                    <div className="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                        {/* User Email */}
+                        <div className="form-control w-full my-6">
+                            <label className="label">
+                                <span className="label-text">User Email</span>
+                            </label>
+                            <input type="text"
+                                placeholder="User Email"
+                                readOnly
+                                value={user?.email}
+                                {...register('userEmail', { required: true })}
+                                required
+                                className="input input-bordered w-full" />
+                        </div>
                         {/* Application Deadline */}
                         <div className="form-control w-full my-6">
                             <label className="label">

@@ -1,6 +1,6 @@
 import { FaEdit } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart"
-import { MdAutoDelete, MdDeleteForever } from "react-icons/md";
+import { MdAutoDelete, MdDeleteForever, MdReviews } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
@@ -55,6 +55,7 @@ const MyApplication = () => {
                                 <col />
                                 <col />
                                 <col />
+                                <col />
                                 <col className="w-24" />
                             </colgroup>
                             <thead className="dark:bg-gray-300 bg-gray-400">
@@ -70,6 +71,7 @@ const MyApplication = () => {
                                     <th className="p-3">Status</th>
                                     <th className="p-3">Details</th>
                                     <th className="p-3">Edit</th>
+                                    <th className="p-3">Add Review</th>
                                     <th className="p-3">Cancel</th>
                                 </tr>
                             </thead>
@@ -111,6 +113,9 @@ const MyApplication = () => {
                                             </td>
                                             <td className="p-3">
                                                 <button className="btn btn-sm bg-emerald-800 text-white"><FaEdit /></button>
+                                            </td>
+                                            <td className="p-3">
+                                                <button className="btn btn-sm bg-emerald-400 text-white"><MdReviews /></button>
                                             </td>
                                             <td className="p-3">
                                                 <button

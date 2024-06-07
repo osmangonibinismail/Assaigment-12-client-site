@@ -1,48 +1,22 @@
 
-import useAuth from '../../Hooks/useAuth';
-// import useAllScholarshipCart from '../../Hooks/useScholarshipCart';
+import { useParams } from 'react-router-dom';
+import useSingleScholarshipCart from '../../Hooks/useSingleScholarshipCart';
 
 const ScholarshipCartDetails = () => {
-
-    // const { user } = useAuth();
-    // const [allScholarshipCart] = useAllScholarshipCart();
+    const { id } = useParams();
+    const [singleCart] = useSingleScholarshipCart(id);
+    console.log(singleCart);
 
 
     return (
 
         <div className='mt-5 mb-10'>
-            {/* {
-                allScholarshipCart?.map((p) => (
-                    < div className='p-8'>
-                        <div className="card lg:card-side bg-base-100 shadow-2xl">
-                            <figure><img src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">University Name: {p.universityName}</h2>
-                                <div className="my-2">
-                                    <h4 className=""><a className="font-semibold">Scholarship category: </a></h4>
-                                    <h4 className=""><a className="font-semibold">University location: </a></h4>
-                                    <p><a className="font-semibold">Application Deadline: </a></p>
-                                    <p><a className="font-semibold">Subject name: </a></p>
-                                    <p><a className="font-semibold">Scholarship Description: </a></p>
-                                    <p><a className="font-semibold">Stipend: </a></p>
-                                    <p><a className="font-semibold">Post Date: </a></p>
-                                    <p><a className="font-semibold">Service Charge: </a></p>
-                                    <p><a className="font-semibold">Application Fees: </a></p>
-                                </div>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-sm btn-primary">Apply Scholarship</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))
-
-            } */}
             < div className='p-8'>
                 <div className="card lg:card-side bg-base-100 shadow-2xl">
                     <figure><img src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album" /></figure>
                     <div className="card-body">
-                        <h2 className="card-title">University Name: </h2>
+                        <h2 className="card-title">University Name: {singleCart?.universityCountry}
+                        </h2>
                         <div className="my-2">
                             <h4 className=""><a className="font-semibold">Scholarship category: </a></h4>
                             <h4 className=""><a className="font-semibold">University location: </a></h4>
@@ -70,15 +44,7 @@ const ScholarshipCartDetails = () => {
                     </div>
                     <p className="dark:text-gray-800 text-gray-800">Mauris et lorem at elit tristique dignissim et ullamcorper elit. In sed feugiat mi. Etiam ut lacinia dui.</p>
                 </div>
-                {/* <div className="card w-90 glass shadow-2xl">
-                    <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">Reviewer name</h2>
-                        <p>Review date</p>
-                        <p>Rating point</p>
-                        <p>Reviewer Comments</p>
-                    </div>
-                </div> */}
+                
             </div>
         </div >
 

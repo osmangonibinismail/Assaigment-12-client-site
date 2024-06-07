@@ -54,7 +54,7 @@ const Dashboard = () => {
                                 :
                                 <>
                                     <li>
-                                        <NavLink to="/dashboard/myProfile">
+                                        <NavLink to="/dashboard/userHome">
                                             <CgProfile className="text-xl" /> My Profile</NavLink>
                                     </li>
                                     <li>
