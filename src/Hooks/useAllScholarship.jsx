@@ -13,7 +13,7 @@ const useAllScholarship = (itemsPerPage, currentPage, search) => {
     // const [loading, setLoading] = useState(true);
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5001/allScholarship?page=${currentPage}&size=${itemsPerPage}`)
+    //     fetch(`https://assaigment-12-server.vercel.app/allScholarship?page=${currentPage}&size=${itemsPerPage}`)
     //         .then(res => res.json())
     //         .then(data =>{
     //             setAllScholarship(data)

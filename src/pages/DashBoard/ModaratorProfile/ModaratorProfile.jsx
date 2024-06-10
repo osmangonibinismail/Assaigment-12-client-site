@@ -9,7 +9,7 @@ const ModaratorProfile = () => {
     const [modarator, setModarator] = useState(allData);
     console.log(modarator)
       useEffect(() => {
-        fetch(`http://localhost:5001/users/modarator/${user.email}`)
+        fetch(`https://assaigment-12-server.vercel.app/users/modarator/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setModarator(data)

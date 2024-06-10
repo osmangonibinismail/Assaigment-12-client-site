@@ -10,7 +10,7 @@ const useModarator = () => {
         queryKey: [user?.email, 'isModarator'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/modarator/${user.email}`);
-            console.log(res.data);
+            // console.log(res.data);
             return res.data?.modarator;
         }
     })

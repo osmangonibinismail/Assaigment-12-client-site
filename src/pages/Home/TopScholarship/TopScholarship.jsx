@@ -10,7 +10,7 @@ const TopScholarship = () => {
     const [item, setItem] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5001/allScholarships')
+        fetch('https://assaigment-12-server.vercel.app/allScholarships')
             .then(res => res.json())
             .then(data => {
                 setItem(data);

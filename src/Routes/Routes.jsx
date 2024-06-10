@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
             {
                 path: '/allScholarship',
                 element: <AllScholarship></AllScholarship>,
-                loader: () => fetch('http://localhost:5001/allScholarship')
+                loader: () => fetch('https://assaigment-12-server.vercel.app/allScholarship')
             },
             {
                 path: '/secret',
@@ -60,12 +60,12 @@ export const router = createBrowserRouter([
             {
                 path: '/scholarshipCartDetails/:id',
                 element: <PrivateRoute><ScholarshipCartDetails></ScholarshipCartDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5001/allScholarship/${params.id}`)
+                loader: ({params}) => fetch(`https://assaigment-12-server.vercel.app/allScholarship/${params.id}`)
             },
             {
                 path: '/applicationForm/:id',
                 element: <PrivateRoute><ApplicationForm></ApplicationForm></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5001/allScholarship/${params.id}`)
+                loader: ({params}) => fetch(`https://assaigment-12-server.vercel.app/allScholarship/${params.id}`)
             }
         ]
     },
@@ -89,7 +89,7 @@ export const router = createBrowserRouter([
             // {
             //     path: 'addReview/:id',
             //     element: <AddReviewUser></AddReviewUser>,
-            //     loader: ({params}) => fetch(`http://localhost:5001/scholarshipCart/${params.id}`)
+            //     loader: ({params}) => fetch(`https://assaigment-12-server.vercel.app/scholarshipCart/${params.id}`)
             // },
 
             // admin route
@@ -108,7 +108,7 @@ export const router = createBrowserRouter([
             {
                 path: 'updateScholarship/:id',
                 element: <UpdateScholarship></UpdateScholarship>,
-                loader: ({params}) => fetch(`http://localhost:5001/allScholarship/${params.id}`)
+                loader: ({params}) => fetch(`https://assaigment-12-server.vercel.app/allScholarship/${params.id}`)
             },
             {
                 path: 'manageAllApplied',

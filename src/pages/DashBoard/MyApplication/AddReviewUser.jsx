@@ -19,7 +19,7 @@ const AddReviewUser = () => {
   
 
 //   useEffect(() => {
-//     fetch(`http://localhost:5001/allScholarship/${id}`)
+//     fetch(`https://assaigment-12-server.vercel.app/allScholarship/${id}`)
 //         .then(res => res.json())
 //         .then(data => {
 //           setHello(data);

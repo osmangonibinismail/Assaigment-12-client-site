@@ -10,7 +10,7 @@ const useSingleScholarshipCart = (_id) => {
 
     useEffect(() => {
         if (_id) {
-            fetch(`http://localhost:5001/allScholarship/${_id}`)
+            fetch(`https://assaigment-12-server.vercel.app/allScholarship/${_id}`)
                 .then(res => res.json())
                 .then(data => {
                     setAllScholarship(data)

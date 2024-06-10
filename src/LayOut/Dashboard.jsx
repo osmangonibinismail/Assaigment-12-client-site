@@ -22,7 +22,7 @@ const Dashboard = () => {
     const [allScholarshipCart, setAllScholarshipCart] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5001/scholarshipCart`)
+        fetch(`https://assaigment-12-server.vercel.app/scholarshipCart`)
             .then(res => res.json())
             .then(data => {
                 setAllScholarshipCart(data)

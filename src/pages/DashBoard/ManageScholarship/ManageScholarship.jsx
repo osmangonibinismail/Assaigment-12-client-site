@@ -4,10 +4,12 @@ import { FaEdit, FaUsers } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useCart from "../../../Hooks/useCart";
 
 const ManageScholarship = () => {
     const [allScholarship, , refetch] = useAllScholarship();
     const axiosSecure = useAxiosSecure();
+    const [cart] = useCart();
 
     const handleDeleteItem = (item) => {
         Swal.fire({
@@ -39,7 +41,7 @@ const ManageScholarship = () => {
     return (
         <div>
             <div className="flex justify-evenly mt-10 mb-5">
-                <h2 className="text-3xl font-semibold text-cyan-600">Manage All Scholarship: </h2>
+                <h2 className="text-3xl font-semibold text-cyan-600">Manage All Scholarship</h2>
             </div>
             <div className="mt-6">
                 <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
