@@ -128,7 +128,7 @@ const AllScholarship = () => {
                 {
                     allScholarship?.map((p) => (
                         <div className="w-90  bg-base-100 shadow-2xl mt-6 mb-10">
-                            <figure><img src="https://i.ibb.co/GkTjR5P/login.png" alt="Shoes" /></figure>
+                            <figure><img src={p.image} alt="Shoes" /></figure>
                             {/* <div className="divider"></div> */}
                             <div className="bg-gray-200">
                                 <div className="card-body items-center text-center">

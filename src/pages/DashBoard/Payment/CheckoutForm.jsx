@@ -23,7 +23,7 @@ const CheckoutForm = ({id}) => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [pay] = useAllScholarship();
-    const totalPrice = pay.reduce((total, item) => total + item.applicationFees, 0)
+    const totalPrice = pay?.applicationFees
 
     useEffect(() => {
         if (totalPrice > 0) {
@@ -132,7 +132,7 @@ const CheckoutForm = ({id}) => {
                 />
                 <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret}>
                     {/* || !clientSecret */}
-                    <ImSpinner9 className="m-auto animate-spin"></ImSpinner9>
+                    {/* <ImSpinner9 className="m-auto animate-spin"></ImSpinner9> */}
                     Pay
                 </button>
                 <p className="text-red-600">{error}</p>

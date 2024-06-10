@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import AddReviewUser from "./AddReviewUser";
+import ApplyDetails from "./ApplyDetails";
 
 
 const MyApplication = () => {
@@ -108,10 +109,10 @@ const MyApplication = () => {
                                                 <p>$15,792</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>$15,792</p>
+                                                <p>pending</p>
                                             </td>
                                             <td className="p-3">
-                                                <button className="btn btn-xs bg-sky-300">Details</button>
+                                                <button className=""><ApplyDetails></ApplyDetails></button>
                                             </td>
                                             <td className="p-3">
                                                 <button className="btn btn-sm bg-emerald-800 text-white"><FaEdit /></button>

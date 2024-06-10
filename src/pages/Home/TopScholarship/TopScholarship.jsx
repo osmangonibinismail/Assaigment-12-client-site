@@ -41,7 +41,7 @@ const TopScholarship = () => {
                 {
                     item.slice(0, 6).map((p) => (
                         <div className="w-90 bg-base-100 shadow-2xl mt-6 mb-10">
-                            <figure className="h-500 w-500"><img src="https://i.ibb.co/k5jGd99/iiuc.jpg" alt="Shoes" /></figure>
+                            <figure className="h-500 w-500"><img className="h-500 w-500" src={p.image} alt="Shoes" /></figure>
                             {/* <div className="divider"></div> */}
                             <div className="bg-gray-200 mt-4">
                                 <div className="card-body items-center text-center">

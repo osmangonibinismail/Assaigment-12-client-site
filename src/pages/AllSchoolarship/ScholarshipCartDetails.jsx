@@ -14,12 +14,12 @@ const ScholarshipCartDetails = () => {
         <div className='mt-5 mb-10'>
             < div className='p-8'>
                 <div className="card lg:card-side bg-base-100 shadow-2xl">
-                    <figure><img src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album" /></figure>
+                    <figure><img src={singleCart?.image} alt="Album" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">University Name: {singleCart?.universityCountry}
                         </h2>
                         <div className="my-2">
-                            <h4 className=""><a className="font-semibold mr-2">Scholarship category: </a>{singleCart?.universityCountry}</h4>
+                            <h4 className=""><a className="font-semibold mr-2">Scholarship category: </a>{singleCart?.scholarshipCategory}</h4>
                             <h4 className=""><a className="font-semibold mr-2">University location: </a>{singleCart?.universityCountry} {singleCart?.universityCity}</h4>
                             <p><a className="font-semibold mr-2">Application Deadline: </a>{singleCart?.applicationDeadline}</p>
                             <p><a className="font-semibold mr-2">Subject name: </a>{singleCart?.subjectName}</p>
