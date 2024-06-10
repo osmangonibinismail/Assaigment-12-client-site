@@ -18,7 +18,7 @@ const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const {user} = useAuth();
     const [isModarator] = useModarator();
-    // console.log(isModarator)
+    // console.log(isModarator);
     const [allScholarshipCart, setAllScholarshipCart] = useState({});
 
     useEffect(() => {
