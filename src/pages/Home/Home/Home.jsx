@@ -4,6 +4,7 @@ import TopScholarship from "../TopScholarship/TopScholarship"
 import { useLocation } from "react-router-dom"
 import ContactUs from "../ContactUs/ContactUs"
 import History from "../History/History"
+import StudentReviewSection from "../StudentReviewSection/StudentReviewSection"
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
       <TopScholarship></TopScholarship>
       <ContactUs></ContactUs>
       <History></History>
+      <StudentReviewSection></StudentReviewSection>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import useAuth from "../../../Hooks/useAuth"
 const AdminProfile = () => {
     const { user } = useAuth();
     return (
-        <div>
+        <div className="card-body items-center text-center">
             {
                 <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800">
                     <img src={user?.photoURL} alt="" className="w-32 h-32 mx-auto rounded-full bg-gray-500 dark:bg-gray-500 aspect-square" />

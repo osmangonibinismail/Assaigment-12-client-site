@@ -1,9 +1,10 @@
 
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useSingleScholarshipCart from '../../Hooks/useSingleScholarshipCart';
 
 const ScholarshipCartDetails = () => {
     const { id } = useParams();
+    console.log(id)
     const [singleCart] = useSingleScholarshipCart(id);
     console.log(singleCart);
 
@@ -18,19 +19,22 @@ const ScholarshipCartDetails = () => {
                         <h2 className="card-title">University Name: {singleCart?.universityCountry}
                         </h2>
                         <div className="my-2">
-                            <h4 className=""><a className="font-semibold">Scholarship category: </a></h4>
-                            <h4 className=""><a className="font-semibold">University location: </a></h4>
-                            <p><a className="font-semibold">Application Deadline: </a></p>
-                            <p><a className="font-semibold">Subject name: </a></p>
-                            <p><a className="font-semibold">Scholarship Description: </a></p>
-                            <p><a className="font-semibold">Stipend: </a></p>
-                            <p><a className="font-semibold">Post Date: </a></p>
-                            <p><a className="font-semibold">Service Charge: </a></p>
-                            <p><a className="font-semibold">Application Fees: </a></p>
+                            <h4 className=""><a className="font-semibold mr-2">Scholarship category: </a>{singleCart?.universityCountry}</h4>
+                            <h4 className=""><a className="font-semibold mr-2">University location: </a>{singleCart?.universityCountry} {singleCart?.universityCity}</h4>
+                            <p><a className="font-semibold mr-2">Application Deadline: </a>{singleCart?.applicationDeadline}</p>
+                            <p><a className="font-semibold mr-2">Subject name: </a>{singleCart?.subjectName}</p>
+                            <p><a className="font-semibold mr-2">Stipend: </a>{singleCart?.stipend}</p>
+                            <p><a className="font-semibold mr-2">Post Date: </a>{singleCart?.scholarshipPostDate}</p>
+                            <p><a className="font-semibold mr-2">Service Charge: </a>{singleCart?.serviceCharge}</p>
+                            <p><a className="font-semibold mr-2">Application Fees: </a>{singleCart?.applicationFees}</p>
+                            <p><a className="font-semibold mr-2">Scholarship Description: </a>{singleCart?.scholarshipDetails}</p>
                         </div>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-sm btn-primary">Apply Scholarship</button>
-                        </div>
+                        <Link to={`/dashboard/payment/${singleCart?._id}`}>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-sm btn-primary">Apply Scholarship</button>
+                            </div>
+                        </Link>
+
                     </div>
                 </div>
             </div>
@@ -44,7 +48,7 @@ const ScholarshipCartDetails = () => {
                     </div>
                     <p className="dark:text-gray-800 text-gray-800">Mauris et lorem at elit tristique dignissim et ullamcorper elit. In sed feugiat mi. Etiam ut lacinia dui.</p>
                 </div>
-                
+
             </div>
         </div >
 

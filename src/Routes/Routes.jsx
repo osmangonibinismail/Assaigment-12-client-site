@@ -20,6 +20,11 @@ import UpdateScholarship from "../pages/DashBoard/UpdateScholarship/UpdateSchola
 import ContactUs from "../pages/Home/ContactUs/ContactUs";
 import UserProfile from "../pages/DashBoard/UserProfile/UserProfile";
 import AdminProfile from "../pages/DashBoard/AdminProfile/AdminProfile";
+import Payment from "../pages/DashBoard/Payment/Payment";
+import ApplicationForm from "../pages/AllSchoolarship/ApplicationForm";
+import AddReviewUser from "../pages/DashBoard/MyApplication/AddReviewUser";
+import ManageAllApplied from "../pages/DashBoard/ManageAllApplied/ManageAllApplied";
+import ModaratorProfile from "../pages/DashBoard/ModaratorProfile/ModaratorProfile";
 
 export const router = createBrowserRouter([
     {
@@ -37,7 +42,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/allScholarship',
-                element: <AllScholarship></AllScholarship>
+                element: <AllScholarship></AllScholarship>,
+                loader: () => fetch('http://localhost:5001/allScholarship')
             },
             {
                 path: '/secret',
@@ -53,7 +59,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/scholarshipCartDetails/:id',
-                element: <ScholarshipCartDetails></ScholarshipCartDetails>,
+                element: <PrivateRoute><ScholarshipCartDetails></ScholarshipCartDetails></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5001/allScholarship/${params.id}`)
+            },
+            {
+                path: '/applicationForm/:id',
+                element: <PrivateRoute><ApplicationForm></ApplicationForm></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5001/allScholarship/${params.id}`)
             }
         ]
@@ -71,6 +82,15 @@ export const router = createBrowserRouter([
                 path: 'myApplication',
                 element: <MyApplication></MyApplication>
             },
+            {
+                path: 'payment/:id',
+                element: <Payment></Payment>,
+            },
+            // {
+            //     path: 'addReview/:id',
+            //     element: <AddReviewUser></AddReviewUser>,
+            //     loader: ({params}) => fetch(`http://localhost:5001/scholarshipCart/${params.id}`)
+            // },
 
             // admin route
             {
@@ -79,21 +99,32 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'addScholarship',
-                element: <AdminRoutes><AddItem></AddItem></AdminRoutes>
+                element: <AddItem></AddItem>
             },
             {
                 path: 'manageScholarship',
-                element: <AdminRoutes><ManageScholarship></ManageScholarship></AdminRoutes>
+                element: <ManageScholarship></ManageScholarship>
             },
             {
                 path: 'updateScholarship/:id',
-                element: <AdminRoutes><UpdateScholarship></UpdateScholarship></AdminRoutes>,
+                element: <UpdateScholarship></UpdateScholarship>,
                 loader: ({params}) => fetch(`http://localhost:5001/allScholarship/${params.id}`)
+            },
+            {
+                path: 'manageAllApplied',
+                element: <ManageAllApplied></ManageAllApplied>
             },
             {
                 path: 'allUsers',
                 element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>
+            },
+            // modarator profile
+            {
+                path: 'modaratorProfile',
+                element: <ModaratorProfile></ModaratorProfile>
             }
+            
+
         ]
     }
 ]);

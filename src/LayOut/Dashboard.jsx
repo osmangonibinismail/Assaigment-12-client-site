@@ -1,18 +1,33 @@
 import { Helmet } from "react-helmet-async"
 import { FaHome, FaListAlt, FaSearch, FaUsers } from "react-icons/fa"
 import { MdEmail, MdOutlineManageSearch, MdRateReview } from "react-icons/md"
-import { NavLink, Outlet } from "react-router-dom"
+import { NavLink, Navigate, Outlet } from "react-router-dom"
 import useCart from "../Hooks/useCart"
 import { IoIosAddCircle } from "react-icons/io"
 import { CgProfile } from "react-icons/cg"
 import { SiManageiq } from "react-icons/si"
 import useAdmin from "../Hooks/useAdmin"
+import { useEffect, useState } from "react"
+import useAuth from "../Hooks/useAuth"
+import useModarator from "../Hooks/useModarator"
 
 
 const Dashboard = () => {
     const [cart] = useCart();
 
     const [isAdmin] = useAdmin();
+    const {user} = useAuth();
+    const [isModarator] = useModarator();
+    // console.log(isModarator)
+    const [allScholarshipCart, setAllScholarshipCart] = useState({});
+
+    useEffect(() => {
+        fetch(`http://localhost:5001/scholarshipCart`)
+            .then(res => res.json())
+            .then(data => {
+                setAllScholarshipCart(data)
+            });
+    }, [])
 
     return (
         <>
@@ -34,13 +49,17 @@ const Dashboard = () => {
                                         <NavLink to="/dashboard/addScholarship">
                                             <IoIosAddCircle className="text-xl" />Add Scholarship</NavLink>
                                     </li>
+                                    {/* <li>
+                                        <NavLink to="/dashboard/manageAllApplied">
+                                            <IoIosAddCircle className="text-xl" />Scholarship cart</NavLink>
+                                    </li> */}
                                     <li>
                                         <NavLink to="/dashboard/manageScholarship">
-                                            <SiManageiq className="text-xl" />Manage Scholarship.</NavLink>
+                                            <SiManageiq className="text-xl" />Manage Scholarship</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/manageAppliedApplication">
-                                            <MdOutlineManageSearch className="text-2xl" />Manage Applied Application ({cart.length})</NavLink>
+                                        <NavLink to="/dashboard/manageAllApplied">
+                                            <MdOutlineManageSearch className="text-2xl" />All Applied Scholarship ({cart.length})</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to="/dashboard/allUsers">
@@ -65,8 +84,38 @@ const Dashboard = () => {
                                         <NavLink to="/dashboard/review">
                                             <MdRateReview className="text-xl" /> My Review</NavLink>
                                     </li>
-                                </>
+                                </> 
+                                
+                                
                         }
+                        {
+                           isModarator &&
+                           <>
+                                    <li>
+                                        <NavLink to="/dashboard/modaratorProfile">
+                                            <CgProfile className="text-xl" /> Modarator Profile</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/addScholarship">
+                                            <IoIosAddCircle className="text-xl" />Add Scholarship</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/manageScholarship">
+                                            <SiManageiq className="text-xl" />Manage Scholarship</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/manageAllApplied">
+                                            <MdOutlineManageSearch className="text-2xl" />All Applied Scholarship ({cart.length})</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/review">
+                                            <MdRateReview className="text-xl" />Manage All Review</NavLink>
+                                    </li>
+                                </>
+                           
+                        }
+                        
+
                         {/* shared nav links */}
                         <div className="divider"></div>
                         <li>

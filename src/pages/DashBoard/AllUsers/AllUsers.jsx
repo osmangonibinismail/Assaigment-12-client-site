@@ -32,6 +32,22 @@ const AllUsers = () => {
                 }
             })
     }
+    const handleMakeModarator = user => {
+        axiosSecure.patch(`/users/modarator/${user._id}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${user.name} is an Modarator Now!!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
 
     const handleDeleteUser = user => {
         Swal.fire({
@@ -76,6 +92,7 @@ const AllUsers = () => {
                                 <col />
                                 <col />
                                 <col />
+                                <col />
                                 <col className="w-24" />
                             </colgroup>
                             <thead className="dark:bg-gray-300 bg-gray-400">
@@ -84,7 +101,8 @@ const AllUsers = () => {
                                     <th className="p-3">User Id</th>
                                     <th className="p-3">User Name</th>
                                     <th className="p-3">User Email</th>
-                                    <th className="p-3">User Role</th>
+                                    <th className="p-3">Make Admin</th>
+                                    <th className="p-3">Make Modarater</th>
                                     <th className="p-3">Cancel</th>
                                 </tr>
                             </thead>
@@ -107,6 +125,13 @@ const AllUsers = () => {
                                             <td className="p-3">
                                                 {user.role === 'admin' ? 'Admin' : <button
                                                     onClick={() => handleMakeAdmin(user)}
+                                                    className="btn bg-orange-500">
+                                                    <FaUsers className="text-white text-xl"></FaUsers>
+                                                </button>}
+                                            </td>
+                                            <td className="p-3">
+                                                {user.role === 'modarator' ? 'Modarator' : <button
+                                                    onClick={() => handleMakeModarator(user)}
                                                     className="btn bg-orange-500">
                                                     <FaUsers className="text-white text-xl"></FaUsers>
                                                 </button>}

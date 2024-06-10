@@ -1,17 +1,25 @@
-import { FaEdit } from "react-icons/fa";
-import useCart from "../../../Hooks/useCart"
-import { MdAutoDelete, MdDeleteForever, MdReviews } from "react-icons/md";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
+import { MdDeleteForever } from "react-icons/md";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-import AddReviewUser from "./AddReviewUser";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
-const MyApplication = () => {
-    const [applicationCart, refetch] = useCart();
+
+const ManageAllApplied = () => {
+    const allData = useLoaderData() || [];
+    const [allScholarshipCart, setAllScholarshipCart] = useState(allData);
     const axiosSecure = useAxiosSecure();
 
-    const handleDelete = id => {
+    useEffect(() => {
+        fetch(`http://localhost:5001/scholarshipCart`)
+            .then(res => res.json())
+            .then(data => {
+                setAllScholarshipCart(data)
+            });
+    }, [])
+
+    const handleDeleteUser = user => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -23,7 +31,7 @@ const MyApplication = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    axiosSecure.delete(`/scholarshipCart/${id}`)
+                    axiosSecure.delete(`/scholarshipCart/${user}`)
                         .then(res => {
                             if (res.data.deletedCount > 0) {
                                 refetch();
@@ -34,13 +42,15 @@ const MyApplication = () => {
                                 });
                             }
                         })
+
                 }
             });
     }
     return (
-        <div className="">
-            <div className="flex justify-evenly">
-                <h2 className="text-2xl text-cyan-600">Total Scholarship Application: {applicationCart.length}</h2>
+        <div>
+            <div className="text-center mb-10">
+                <p className="font-medium text-2xl text-[#ed2027]">All Applied Scholarship: {allScholarshipCart.length}</p>
+                {/* <h1 className="text-2xl font-medium mt-2">What's People Say's</h1> */}
             </div>
             <div className="mt-6">
                 <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
@@ -53,76 +63,54 @@ const MyApplication = () => {
                                 <col />
                                 <col />
                                 <col />
-                                <col />
-                                <col />
-                                <col />
-                                <col />
-                                <col />
                                 <col className="w-24" />
                             </colgroup>
                             <thead className="dark:bg-gray-300 bg-gray-400">
                                 <tr className="text-left">
                                     <th className="p-3">#</th>
                                     <th className="p-3">University Name</th>
-                                    <th className="p-3">Address</th>
-                                    <th className="p-3">Feedback</th>
+                                    <th className="p-3">Scholarship Name</th>
+                                    <th className="p-3">Scholarship Category</th>
                                     <th className="p-3">Subject Category</th>
                                     <th className="p-3">Applied Degree</th>
-                                    <th className="p-3 ">Application Fees</th>
-                                    <th className="p-3">Service Charge</th>
+                                    <th className="p-3">Application Fees</th>
                                     <th className="p-3">Status</th>
-                                    <th className="p-3">Details</th>
-                                    <th className="p-3">Edit</th>
-                                    <th className="p-3">Add Review</th>
                                     <th className="p-3">Cancel</th>
                                 </tr>
                             </thead>
                             {
-                                applicationCart?.map((p, index) => (
+                                allScholarshipCart?.map((user, index) => (
                                     <tbody>
                                         <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50 bg-green-200">
                                             <td className="p-3">
                                                 <p>{index + 1}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>{p._id}</p>
+                                                <p>{user.universityName}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>{p.email}</p>
+                                                <p>{user.scholarshipCategory}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>Microsoft Corporation</p>
+                                                <p>{user.subjectCategory}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>14 Jan 2022</p>
-                                                <p className="dark:text-gray-600">Friday</p>
+                                                <p>{user.degree}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>01 Feb 2022</p>
-                                                <p className="dark:text-gray-600">Tuesday</p>
+                                                <p>{user.applicantName}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>$15,792</p>
+                                                <p>{user.sscResult}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>$15,792</p>
+                                                <p>pending</p>
                                             </td>
-                                            <td className="p-3">
-                                                <p>$15,792</p>
-                                            </td>
-                                            <td className="p-3">
-                                                <button className="btn btn-xs bg-sky-300">Details</button>
-                                            </td>
-                                            <td className="p-3">
-                                                <button className="btn btn-sm bg-emerald-800 text-white"><FaEdit /></button>
-                                            </td>
-                                            <td className="p-3">
-                                            <button className=""><AddReviewUser></AddReviewUser></button>
 
-                                            </td>
+
                                             <td className="p-3">
                                                 <button
-                                                    onClick={() => handleDelete(p._id)}
+                                                    onClick={() => handleDeleteUser(user._id)}
                                                     className="btn btn-sm text-xl bg-red-600 text-white"><MdDeleteForever /></button>
                                             </td>
 
@@ -134,10 +122,9 @@ const MyApplication = () => {
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     )
 }
 
-export default MyApplication
+export default ManageAllApplied

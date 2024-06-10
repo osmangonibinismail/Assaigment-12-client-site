@@ -9,15 +9,17 @@ const useSingleScholarshipCart = (_id) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5001/allScholarship/${_id}`)
-            .then(res => res.json())
-            .then(data =>{
-                setAllScholarship(data)
-                setLoading(false)
-            });
+        if (_id) {
+            fetch(`http://localhost:5001/allScholarship/${_id}`)
+                .then(res => res.json())
+                .then(data => {
+                    setAllScholarship(data)
+                    setLoading(false)
+                });
+        }
     }, [_id])
 
-  return [allScholarship, loading]
+    return [allScholarship, loading]
 }
 
 export default useSingleScholarshipCart;
